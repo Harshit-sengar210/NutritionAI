@@ -12,11 +12,13 @@ export const TodaysMeals = () => {
   // Group or just display in order
   const sortedMeals = [...todaysMeals].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 
-  const getMealIcon = (type: string) => {
-    if (type === 'Breakfast') return '🌅';
-    if (type === 'Lunch') return '☀️';
-    if (type === 'Dinner') return '🌙';
-    return '🍎';
+  const getMealVisuals = (type: string) => {
+    switch(type) {
+      case 'Breakfast': return { icon: '🌅', color: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-100' };
+      case 'Lunch': return { icon: '🥗', color: 'text-green-600', bg: 'bg-green-50', border: 'border-green-100' };
+      case 'Dinner': return { icon: '🍲', color: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-100' };
+      default: return { icon: '🍎', color: 'text-rose-600', bg: 'bg-rose-50', border: 'border-rose-100' };
+    }
   };
 
   return (
@@ -45,25 +47,28 @@ export const TodaysMeals = () => {
             </button>
           </div>
         ) : (
-          sortedMeals.map((meal) => (
-            <div key={meal.id} className="flex items-center p-4 border border-stone-100 rounded-2xl hover:border-stone-200 hover:shadow-sm transition-all group bg-stone-50/50">
-              <div className="w-10 h-10 rounded-full bg-white border border-stone-100 flex items-center justify-center text-lg shadow-sm">
-                {getMealIcon(meal.type)}
-              </div>
-              <div className="ml-4 flex-1">
-                <div className="flex justify-between items-start">
-                  <h4 className="font-semibold text-stone-900 text-sm group-hover:text-green-700 transition-colors">{meal.name}</h4>
-                  <span className="font-semibold text-stone-900 text-sm">{meal.calories} kcal</span>
+          sortedMeals.map((meal) => {
+            const visuals = getMealVisuals(meal.type);
+            return (
+              <div key={meal.id} className={`flex items-center p-4 border rounded-2xl hover:shadow-sm transition-all group ${visuals.bg} ${visuals.border} bg-opacity-50`}>
+                <div className={`w-10 h-10 rounded-full bg-white border flex items-center justify-center text-lg shadow-sm ${visuals.border}`}>
+                  {visuals.icon}
                 </div>
-                <div className="flex justify-between items-center mt-1">
-                  <p className="text-xs text-stone-500 font-medium">{meal.type}</p>
-                  <p className="text-[10px] text-stone-400">
-                    {new Date(meal.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </p>
+                <div className="ml-4 flex-1">
+                  <div className="flex justify-between items-start">
+                    <h4 className={`font-bold text-sm transition-colors ${visuals.color}`}>{meal.name}</h4>
+                    <span className="font-bold text-stone-900 text-sm">{meal.calories} kcal</span>
+                  </div>
+                  <div className="flex justify-between items-center mt-1">
+                    <p className="text-xs text-stone-600 font-semibold">{meal.type}</p>
+                    <p className="text-[10px] text-stone-500 font-medium">
+                      {new Date(meal.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
 

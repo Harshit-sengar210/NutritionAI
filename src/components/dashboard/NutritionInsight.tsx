@@ -36,17 +36,17 @@ export const NutritionInsight = () => {
   }, [todaysMeals, profile.nutritionTargets]);
 
   return (
-    <div className="bg-green-900 border border-green-800 rounded-3xl p-6 lg:p-8 shadow-lg text-white relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-      <div className="absolute top-0 right-0 w-64 h-64 bg-green-700/50 rounded-full blur-3xl -z-0" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-48 h-48 bg-emerald-600/40 rounded-full blur-2xl -z-0" />
+    <div className="bg-indigo-50 border border-indigo-100 rounded-3xl p-6 lg:p-8 shadow-sm relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-200/40 rounded-full blur-3xl -z-0" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-48 h-48 bg-purple-200/40 rounded-full blur-2xl -z-0" />
       
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xl animate-pulse">✦</span>
-          <h3 className="text-lg font-semibold tracking-wide">Nutrition AI Insight</h3>
+          <span className="text-xl animate-pulse">✨</span>
+          <h3 className="text-lg font-bold tracking-wide text-indigo-900">Nutrition AI Insight</h3>
         </div>
         
-        <p className="text-green-50 text-base leading-relaxed font-medium">
+        <p className="text-indigo-800 text-base leading-relaxed font-semibold">
           &quot;{insight}&quot;
         </p>
       </div>

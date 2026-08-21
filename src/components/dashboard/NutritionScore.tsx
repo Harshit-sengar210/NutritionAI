@@ -55,15 +55,15 @@ export const NutritionScore = () => {
       
       <div>
         <h3 className="text-sm font-semibold text-stone-900 mb-1">Nutrition Score</h3>
-        <p className={`text-sm font-medium ${statusColor}`}>{status}</p>
+        <p className={`text-sm font-bold ${statusColor}`}>{status}</p>
         
         <div className="mt-4 space-y-1">
-          <div className="flex items-center gap-2 text-xs text-stone-500">
-            <span className="text-green-500">✓</span> Calorie balance
+          <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
+            <span className="text-emerald-500 text-base">🔥</span> Calorie balance
           </div>
-          <div className="flex items-center gap-2 text-xs text-stone-500">
-            <span className={consumedProtein > targets.protein * 0.8 ? "text-green-500" : "text-stone-300"}>
-              {consumedProtein > targets.protein * 0.8 ? "✓" : "○"}
+          <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
+            <span className={consumedProtein > targets.protein * 0.8 ? "text-emerald-500 text-base" : "text-stone-300 text-base"}>
+              {consumedProtein > targets.protein * 0.8 ? "💪" : "💪"}
             </span> Protein progress
           </div>
         </div>
@@ -71,10 +71,16 @@ export const NutritionScore = () => {
 
       <div className="relative w-24 h-24 flex items-center justify-center">
         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={normalizedScore >= 80 ? "#10b981" : normalizedScore >= 60 ? "#3b82f6" : "#f59e0b"} />
+              <stop offset="100%" stopColor={normalizedScore >= 80 ? "#34d399" : normalizedScore >= 60 ? "#60a5fa" : "#fbbf24"} />
+            </linearGradient>
+          </defs>
           <circle cx="50" cy="50" r={radius} stroke="currentColor" strokeWidth="8" fill="transparent" className="text-stone-100" />
           <circle
-            cx="50" cy="50" r={radius} stroke="currentColor" strokeWidth="8" fill="transparent" strokeLinecap="round"
-            className={`${statusColor} drop-shadow-sm transition-all duration-1000 ease-out`}
+            cx="50" cy="50" r={radius} stroke="url(#scoreGradient)" strokeWidth="8" fill="transparent" strokeLinecap="round"
+            className="drop-shadow-sm transition-all duration-1000 ease-out"
             style={{
               strokeDasharray: circumference,
               strokeDashoffset: mounted ? strokeDashoffset : circumference
@@ -82,7 +88,7 @@ export const NutritionScore = () => {
           />
         </svg>
         <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className="text-xl font-bold text-stone-900">{normalizedScore}</span>
+          <span className="text-xl font-black text-stone-900">{normalizedScore}</span>
         </div>
       </div>
 

@@ -20,13 +20,14 @@ export const NutritionHero = () => {
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="bg-white border border-stone-200 rounded-3xl p-6 lg:p-8 shadow-sm flex flex-col items-center justify-center relative overflow-hidden group">
+    <div className="bg-gradient-to-br from-emerald-50 via-white to-blue-50 border border-stone-200/60 rounded-3xl p-6 lg:p-8 shadow-sm flex flex-col items-center justify-center relative overflow-hidden group h-full">
       {/* Decorative background glow */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-green-50/50 rounded-full blur-3xl -z-10 group-hover:bg-green-50 transition-colors duration-1000" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200/30 rounded-full blur-3xl -z-10 group-hover:bg-emerald-200/40 transition-colors duration-1000" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-200/30 transition-colors duration-1000" />
 
       <div className="w-full flex justify-between items-center mb-6 z-10">
         <h2 className="text-lg font-semibold text-stone-900">Today&apos;s Nutrition</h2>
-        <span className="text-sm font-medium text-stone-500 bg-stone-50 px-3 py-1 rounded-full border border-stone-100">
+        <span className="text-sm font-bold text-emerald-800 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-emerald-100 shadow-sm">
           {consumedCalories} / {targetCalories} kcal
         </span>
       </div>
@@ -73,8 +74,8 @@ export const NutritionHero = () => {
       </div>
 
       <div className="mt-4 z-10 text-center animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-        <p className="font-medium text-stone-600">
-          <span className="text-green-600 font-semibold">{remaining} kcal</span> remaining
+        <p className="font-medium text-stone-700 bg-white/60 px-4 py-1.5 rounded-full inline-block backdrop-blur-sm border border-stone-100/50">
+          <span className="text-emerald-600 font-bold">{remaining} kcal</span> remaining
         </p>
       </div>
     </div>
