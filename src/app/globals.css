@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0fdf4;
+  --color-brand-100: #dcfce7;
+  --color-brand-500: #22c55e;
+  --color-brand-600: #16a34a;
+  --color-brand-900: #14532d;
+  
+  --animate-sparkle: sparkle 2s ease-in-out infinite;
+  --animate-sparkle-delayed: sparkle 2s ease-in-out infinite 1s;
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  --animate-scale-fade: scaleFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-progress: progress 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --animate-glow: glowPulse 4s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out infinite 3s;
+  --animate-shimmer: shimmer 2.5s ease-in-out infinite;
+}
+
+@layer base {
+  :root {
+    --background: #fafaf9;
+    --foreground: #1c1917;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #1c1917;
+      --foreground: #fafaf9;
+    }
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; filter: brightness(1.2); }
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scaleFade {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-scanline {
+  animation: scanline 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
