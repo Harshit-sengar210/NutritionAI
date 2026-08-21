@@ -30,6 +30,12 @@ export const SplashScreen = () => {
       }, 3500)
     ];
 
+    return () => {
+      timers.forEach(clearTimeout);
+    };
+  }, [router]);
+
+  useEffect(() => {
     // Loading text cycler
     let textInterval: NodeJS.Timeout;
     if (stage >= 4) {
@@ -41,10 +47,9 @@ export const SplashScreen = () => {
     }
 
     return () => {
-      timers.forEach(clearTimeout);
       if (textInterval) clearInterval(textInterval);
     };
-  }, [router, stage]);
+  }, [stage, loadingMessages.length]);
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FAFAF9] overflow-hidden">
