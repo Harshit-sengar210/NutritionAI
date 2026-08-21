@@ -24,10 +24,10 @@ export const SplashScreen = () => {
       setTimeout(() => setStage(3), 1100),  // Step 5 & 6: Text fades/slides up
       setTimeout(() => setStage(4), 1600),  // Step 7: Loading indicator appears
       
-      // Navigate to /auth after the progress bar animation completes (~2.5s) + some buffer
+      // Navigate to /auth after the progress bar animation completes (~1.5s) + some buffer
       setTimeout(() => {
         router.push('/auth');
-      }, 5500)
+      }, 3500)
     ];
 
     // Loading text cycler
@@ -37,7 +37,7 @@ export const SplashScreen = () => {
       textInterval = setInterval(() => {
         currentIndex = (currentIndex + 1) % loadingMessages.length;
         setLoadingTextIndex(currentIndex);
-      }, 900);
+      }, 500);
     }
 
     return () => {
